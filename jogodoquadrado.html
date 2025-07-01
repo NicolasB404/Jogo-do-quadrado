@@ -1,422 +1,244 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Academic-HUB - Geografia</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Jaro:opsz@6..72&display=swap" rel="stylesheet">
-
+    <title>Jogo do quadrado</title>
 </head>
-
 <body>
-    <header>
-        <div class="logo">AcademicHub</div>
-        <div class="icons">
-            <i class="fas fa-home" alt="Home" onclick="window.location.href='paginaInicial.html'"></i>
-            <i class="fas fa-school" alt="Escola" onclick="window.location.href='informacoesEscola.html'"></i>
-        </div>
-        <div class="search-bar">
-            <input type="text" class="Pesquisar" id="searchInput" placeholder="Pesquisar..." oninput="searchPosts()">
-        </div>
-        <div class="icons">
-            <i class="fas fa-comments" alt="Chat" onclick="window.location.href='chat.html'"></i>
-            <i class="fas fa-bell" alt="Notificações" onclick="window.location.href='notificacoes.html'"></i>
-            <i class="fas fa-user" alt="Perfil" onclick="window.location.href='perfil.html'"></i>
-
-        </div>
-
-        <button class="hamburger-btn" onclick="openMenuLateral()">
-            <div class="bar"></div>
-            <div class="bar"></div>
-            <div class="bar"></div>
-        </button>
-
-        <div class="menu-lateral" id="menuLateral">
-            <a href="javascript:void(0)" onclick="closeMenuLateral()">&times; Fechar</a>
-            <a href="noticias.html">Notícias</a>
-            <a href="desabafoAnonimo.html">Desabafo Anônimo</a>
-            <a href="reclameAqui.html">Reclame Aqui</a>
-            <a href="suporte.html">Suporte</a>
-            <a href="alunosDestaque.html">Alunos Destaque</a>
-            <a href="sobreAcademicHub.html">Sobre o Academic Hub</a>
-            <a href="creditos.html">Créditos</a>
-        </div>
-
-        <div class="overlay" id="overlay" onclick="closeMenuLateral()"></div>
-
-
-
-    </header>
-
-
-    <main class="container">
-        <section class="hero-section">
-            <img src="https://i.ibb.co/4ZwQTKc0/Worldmap6-2048x.jpg" alt="Mapa mundial" class="hero-image">
-            <h1 class="hero-title">Geografia - 2º Ano B Manha</h1>
-        </section>
-
-        <div class="content-wrapper">
-            <aside class="recados-box green-border">
-                <h2>RECADOS</h2>
-                <div class="recado-item">
-                    <p>quiz de recuperação</p>
-                </div>
-            </aside>
-
-            <section class="main-content">
-                <div class="post-input">
-                    <img src="https://lh3.googleusercontent.com/a-/ALV-UjUP4O1OM0Rtt5lDS3JlvE0ZYZ4WSy80scX6k2fxAUqWlFQBcavW=s32-c"
-                        alt="User Profile" class="profile-pic">
-                    <input type="text" placeholder="escreva algo para turma">
-                </div>
-
-                <div class="post-card">
-                    <img src="https://lh3.googleusercontent.com/a-/ALV-UjUauYYxSuqnxOI7yy2VfQySmwWs12cXJ0RXnLYLPxOmfMDwlXk=s32-c"
-                        alt="Preto_Jack123 Profile" class="profile-pic">
-                    <div class="post-details">
-                        <span class="username">ALESSANDRA DANIELE KMIECIK</span>
-                        <p class="post-text">Ola meus queridos</p>
-                    </div>
-                </div>
-            </section>
-        </div>
-    </main>
-    <nav>
-        <ul class="menucoisa">
-            <li><a href="#">Mural</a></li>
-            <li><a href="#">Atividades</a></li>
-            <li><a href="#">Pessoas</a></li>
-        </ul>
-    </nav>
+    <div class="texto">
+    <h1>Jogo do quadrado</h1>
+    <p>Clique no quadrado para obter pontos!</p>
+    </div>
+    <p class="rec">Recorde: <span id="recorde">0</span></p>
+    <div id="menp"></div>
+    <div id="localjogo">
+        <div id="quadrado"></div>
+        <div id="quadradofake"></div>
+        <div id="quadradogol"></div>
+        <div id="quadradonight"></div>
+    </div>
+    <div id="regras">Regras</div>
+    <div class="abarules">
+        <h2>Quadrados</h2>
+        <p>esse quadrado<span class=real></span> da um ponto</p>
+        <p>esse quadrado <span class=fake></span> da menos um ponto</p>
+        <p>esse quadrado<span class=oro></span> da cinco pontos</p>
+        <p>Existem outros quadrados especiais...</p>
+    </div>
 </body>
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
-
-    body {
-        font-family: 'Roboto', sans-serif;
-        margin: 0;
-        background-color: rgb(255, 255, 255);
-        color: rgb(48, 48, 48);
-    }
-
-    nav {
-        background: linear-gradient(to right, rgb(255, 251, 43), rgb(21, 42, 225));
-        height: 10%;
-        width: 50%;
-        margin-left: 12%;
-        margin-top:-32%;
-        position: absolute;
-    }
-
-    nav ul {
-        list-style-type: none;
-        padding: 0;
-        margin: 0;
-        display: flex;
-        justify-content: center;
-    }
-
-    nav a {
-        color: rgb(255, 255, 255);
-        font-family: 'Courier New', Courier, monospace;
-        text-decoration: none;
-        font-size: 18px;
-        padding: 15px;
-    }
-
-    nav a:hover {
-        background-color: rgb(0, 0, 0);
-        border-radius: 5px;
-    }
-
-    .container {
-        max-width: 1200px;
-        margin: 20px auto;
-        padding: 0 20px;
-    }
-
-    .hero-section {
-        position: relative;
-        width: 100%;
-        height: 250px;
-        overflow: hidden;
-        border-radius: 8px;
-        margin-bottom: 20px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    .hero-image {
-        width: 100%;
-        height: 100%;
-        display: block;
-        object-fit: cover;
-    }
-
-    .hero-title {
-        position: absolute;
-        bottom: 20px;
-        left: 20px;
-        color: rgb(255, 255, 255);
-        font-size: 2.5em;
-        font-weight: 700;
-        text-shadow: 2px 2px 4px rgb(0, 0, 0, );
-    }
-
-    .content-wrapper {
-        display: flex;
-        gap: 20px;
-        flex-wrap: wrap;
-    }
-
-    .recados-box {
-        background-color: (rgb(255, 255, 255));
-        border: 1px solid (rgb(201, 201, 201));
-        border-radius: 8px;
-        padding: 20px;
-        width: 300px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-        flex-shrink: 0;
-        border: 3px solid #1b8d91;
-    }
-
-    .recados-box h2 {
-        font-size: 1.2em;
-        color: (rgb(23, 23, 23));
-        margin-bottom: 15px;
-        border-bottom: 1px solid (rgb(201, 201, 201));
-        padding-bottom: 10px;
-    }
-
-    .recado-item {
-        margin-bottom: 10px;
-    }
-
-    .recado-item p {
-        margin: 0;
-        color: var(rgb(23, 23, 23));
-    }
-
-    .main-content {
-        flex-grow: 1;
-        min-width: 400px;
-    }
-
-    .post-input {
-        background-color: (rgb(255, 255, 255));
-        border: 1px solid (rgb(201, 201, 201));
-        border-radius: 8px;
-        padding: 15px;
-        display: flex;
-        align-items: center;
-        margin-bottom: 20px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-    }
-
-    .post-input .profile-pic {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        object-fit: cover;
-        margin-right: 15px;
-        border: 1px solid (rgb(201, 201, 201));
-    }
-
-    .post-input input {
-        flex-grow: 1;
-        border: 1px solid var(rgb(201, 201, 201));
-        border-radius: 20px;
-        padding: 10px 15px;
-        font-size: 1em;
-        background-color: (rgb(255, 255, 255));
-        outline: none;
-    }
-
-    .post-input input::placeholder {
-        color: #888;
-    }
-
-    .post-card {
-        background-color: (rgb(255, 255, 255));
-        border: 1px solid (rgb(201, 201, 201));
-        border-radius: 8px;
-        padding: 15px;
-        display: flex;
-        align-items: flex-start;
-        margin-bottom: 20px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-    }
-
-    .post-card .profile-pic {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        object-fit: cover;
-        margin-right: 15px;
-        border: 1px solid var(rgb(201, 201, 201));
-    }
-
-    .post-details {
-        flex-grow: 1;
-    }
-
-    .post-details .username {
-        font-weight: 700;
-        color: var(--rgb(0, 0, 0)r);
-        margin-bottom: 5px;
-        display: block;
-    }
-
-    .post-details .post-text {
-        margin: 0;
-        color: (rgb(23, 23, 23));
-        line-height: 1.5;
-    }
-
-    @media (max-width: 768px) {
-        .content-wrapper {
-            flex-direction: column;
+        body {
+            text-align: center;
+            font-family: sans-serif;
+            background-color: rgb(26, 26, 26);
+        }
+        .real{
+            width:20px;
+            height:20px;
+            background-color: rgb(239, 0, 0);
+        }
+        .fake{
+            width:20px;
+            height:20px;
+            background-color: rgb(203, 0, 0);
+        }
+        .oro{
+            width:20px;
+            height:20px;
+            background-color: rgb(241, 251, 62);
+        }
+        .real, .fake, .oro {
+            display: inline-block;
+            margin-left: 10px;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+        .rec{
+            font-size: 25px;
+            color: rgb(255, 255, 255);
+        }
+        #localjogo {
+            width: 400px;
+            height: 400px;
+            border: 2px solid rgb(251, 251, 251);
+            position: relative;
+            margin: auto;
+            background-color: rgb(61, 61, 61);
+        }
+        #quadrado {
+            width: 50px;
+            height: 50px;
+            background-color: rgb(239, 0, 0);
+            position: absolute;
+            cursor: pointer;
+        }
+        #quadradofake {
+            width: 50px;
+            height: 50px;
+            background-color: rgb(203, 0, 0);
+            position: absolute;
+            cursor: pointer;
+        }
+        #quadradogol {
+            width: 50px;
+            height: 50px;
+            background-color: rgb(241, 251, 62);
+            position: absolute;
+            cursor: pointer;
+            display: none;
+        }
+        #quadradonight{
+            width: 50px;
+            height: 50px;
+            background-color: rgb(2, 26, 141);
+            position: absolute;
+            cursor: pointer;
+            display: none;
+        }
+        #recorde {
+            color: rgb(64, 128, 255);
+        }
+        .texto {
+            color: rgb(255, 255, 255);
+        }
+        .informacoes {
+            color: rgb(253, 253, 224);
+        }
+        #regras {
+            display: flex;
+            justify-content: center;
             align-items: center;
+            position: absolute;
+            left: 75%;
+            top: 80%;
+            width: 100px;
+            height: 50px;
+            background-color: rgb(55, 55, 55);
+            color: rgb(255, 255, 255);
+            border: solid rgb(255, 255, 255) 3px;
+            cursor: pointer;
         }
-
-        .recados-box {
-            width: 100%;
-            margin-bottom: 20px;
+        .abarules {
+            display: none;
+            position: absolute;
+            top: 18%;
+            left: 67%;
+            width: 400px;
+            height: 400px;
+            background-color: rgb(46, 40, 40);
+            border: 3px solid rgb(221, 188, 0);
+            color:rgb(233, 233, 233);
         }
-
-        .hero-title {
-            font-size: 1.8em;
-            bottom: 10px;
-            left: 10px;
+        #menp {
+            position: absolute;
+            top: 55%;
+            left: 5%;
+            width: 200px;
+            height: 140px;
+            border: 2px solid rgb(251, 251, 251);
+            background-color: rgb(61, 61, 61);
         }
-
-
-    }
-
-    @media (max-width: 480px) {
-        .container {
-            padding: 0 10px;
+        .mensagemclass {
+            font-size: 18px;
+            margin: 5px;
+            font-weight: bold;
+            animation: bule 0.5s;
         }
-
-        .hero-section {
-            height: 180px;
+        @keyframes bule {
+            from { opacity: 0;}
+            to { opacity: 1;}
         }
-
-        .hero-title {
-            font-size: 1.5em;
+        @keyframes cafe {
+            from { opacity: 1;}
+            to { opacity: 0;}
         }
-    }
-
-    header {
-        background: linear-gradient(to right, rgb(155, 16, 201), rgb(255, 255, 29));
-        display: flex;
-        align-items: center;
-        padding: 10px;
-        justify-content: space-between;
-        color: white;
-    }
-
-    header .icons i {
-        width: 24px;
-        margin: 0 10px;
-        cursor: pointer;
-    }
-
-
-    header .icons {
-        margin-right: 80px;
-        margin-left: 20px;
-    }
-
-    .search-bar {
-        flex-grow: 1;
-        margin: 0 20px;
-    }
-
-    .search-bar input {
-        width: 80%;
-        padding: 5px;
-    }
-
-    .hamburger-btn {
-        position: absolute;
-        top: 20px;
-        right: 40px;
-        z-index: 1001;
-        background: none;
-        border: none;
-        cursor: pointer;
-    }
-
-    .hamburger-btn .bar {
-        width: 25px;
-        height: 3px;
-        background-color: rgb(255, 255, 255);
-        margin: 5px 0;
-        transition: 0.3s;
-    }
-
-    .menu-lateral {
-        height: 100%;
-        width: 0;
-        position: fixed;
-        top: 0;
-        right: 0;
-        background-color: rgb(52, 7, 78);
-        overflow-x: hidden;
-        transition: 0.5s;
-        padding-top: 60px;
-        z-index: 1000;
-    }
-
-    .menu-lateral a {
-        padding: 12px 20px;
-        text-decoration: none;
-        font-size: 20px;
-        color: white;
-        display: block;
-        transition: 0.3s;
-    }
-
-    .menu-lateral a:hover {
-        background-color: rgb(43, 1, 50);
-    }
-
-    .overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        height: 100%;
-        width: 100%;
-        background-color: rgb(0, 0, 0, );
-        display: none;
-        z-index: 999;
-    }
-
-    .overlay.show {
-        display: block;
-    }
-
-    .logo {
-
-        font-family: 'Jaro', sans-serif;
-        font-size: 40px;
-        padding-left: 30px;
-
-    }
+        .cafe {
+            animation: cafe 1s forwards;
+        }
 </style>
 <script>
-    function openMenuLateral() {
-        document.getElementById("menuLateral").style.width = "250px";
-        document.getElementById("overlay").classList.add("show");
-        document.querySelector(".hamburger-btn").style.display = "none";
-    }
+        let score = 0;
+        const pontuacaom = document.getElementById("recorde");
+        const localdjogo = document.getElementById("localjogo");
+        const quadrador = document.getElementById("quadrado");
+        const falsequadrador = document.getElementById("quadradofake");
+        const quadradoSpecial = document.getElementById("quadradogol");
+        const quadradonightmare = document.getElementById("quadradonight")
 
-    function closeMenuLateral() {
-        document.getElementById("menuLateral").style.width = "0";
-        document.getElementById("overlay").classList.remove("show");
-        document.querySelector(".hamburger-btn").style.display = "block";
-    }
+        function movimentoquadrados() {
+        const maxX = localdjogo.clientWidth - quadrador.clientWidth;
+        const maxY = localdjogo.clientHeight - quadrador.clientHeight;
+        quadrador.style.left = Math.floor(Math.random() * maxX) + "px";
+        quadrador.style.top = Math.floor(Math.random() * maxY) + "px";
+        falsequadrador.style.left = Math.floor(Math.random() * maxX) + "px";
+        falsequadrador.style.top = Math.floor(Math.random() * maxY) + "px";
 
+        if (Math.random() < 0.09) { 
+        quadradoSpecial.style.display = "block";
+        quadradoSpecial.style.left = Math.floor(Math.random() * maxX) + "px";
+        quadradoSpecial.style.top = Math.floor(Math.random() * maxY) + "px";
+    } 
+        else {
+        quadradoSpecial.style.display = "none";
+    }
+    if (Math.random() < 0.05 && score >= 50) { 
+        quadradonightmare.style.display = "block";
+        quadradonightmare.style.left = Math.floor(Math.random() * maxX) + "px";
+        quadradonightmare.style.top = Math.floor(Math.random() * maxY) + "px";
+    } 
+        else {
+        quadradonightmare.style.display = "none";
+    }
+        }
+        quadrador.addEventListener("click", () => {
+        score += 1;
+        pontuacaom.textContent = score;
+        scorenews("+1 ponto!", "lightcoral");
+        movimentoquadrados();
+    });
+        falsequadrador.addEventListener('click', () => {
+        score -= 1;
+        pontuacaom.textContent = score;
+        scorenews("-1 ponto!", "red");
+        movimentoquadrados();
+    });
+        quadradoSpecial.addEventListener("click", () => {
+        score += 5;
+        pontuacaom.textContent = score;
+        quadradoSpecial.style.display = "none";
+        scorenews("+5 pontos, Quadrado dourado!", "gold");
+        movimentoquadrados();
+    });
+        quadradonightmare.addEventListener("click", () => {
+        score += 10;
+        pontuacaom.textContent = score;
+        quadradonightmare.style.display = "none";
+        scorenews("+10 pontos, Quadrado nightmare.", "darkcyan");
+        movimentoquadrados();
+    });
+
+     movimentoquadrados();
+    
+    document.getElementById("regras").addEventListener("click", function() {
+    const rulesbox= document.querySelector(".abarules");
+    if (rulesbox.style.display === "block") {
+        rulesbox.style.display = "none";
+    } else {
+        rulesbox.style.display = "block";
+    }
+});
+
+function scorenews(texto, cor = "white") {
+    const menpd = document.getElementById("menp");
+    const newsc = document.createElement("div");
+    newsc.textContent = texto;
+    newsc.style.color = cor;
+    newsc.classList.add("mensagemclass");
+    menpd.appendChild(newsc);
+
+    setTimeout(() => {
+        newsc.classList.add("cafe");
+        setTimeout(() => {
+        newsc.remove();
+       }, 1000);
+    }, 2000); 
+}
 </script>
