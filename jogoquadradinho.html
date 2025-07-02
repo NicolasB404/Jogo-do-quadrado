@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Jogo do Quadrado</title>
+  <script src="https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.1.0/firebase-database.js"></script>
+  <script>
+    const firebaseConfig = {
+      apiKey: "SUA_API_KEY",
+      authDomain: "SEU_DOMINIO.firebaseapp.com",
+      databaseURL: "https://SEU_DOMINIO-default-rtdb.firebaseio.com",
+      projectId: "SEU_PROJETO_ID",
+      storageBucket: "SEU_BUCKET.appspot.com",
+      messagingSenderId: "SEU_ID",
+      appId: "SUA_APP_ID"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+  </script>
+  <style>
+    body { background: #1a1a1a; color: #fff; font-family: sans-serif; text-align: center; }
+    #localjogo { width: 400px; height: 400px; background: #3d3d3d; border: 2px solid white; margin: auto; position: relative; }
+    .square { width: 50px; height: 50px; position: absolute; cursor: pointer; }
+    #quadrado { background: red; }
+    #quadradofake { background: darkred; }
+    #quadradogol { background: gold; display: none; }
+    #quadradonight { background: blue; display: none; }
+    #menp {
+      position: absolute; top: 55%; left: 5%;
+      width: 200px; height: 140px;
+      background: #3d3d3d; border: 2px solid #fff;
+    }
+    .mensagemclass {
+      font-size: 18px; margin: 5px; font-weight: bold;
+      animation: bule 0.5s;
+    }
+    @keyframes bule { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes cafe { from { opacity: 1; } to { opacity: 0; } }
+    .cafe { animation: cafe 1s forwards; }
+    #ranking { margin-top: 20px; }
+  </style>
+</head>
+<body>
+
+  <h1>Jogo do Quadrado</h1>
+  <p>Clique nos quadrados para pontuar!</p>
+  <p>Recorde: <span id="recorde">0</span></p>
+
+  <div id="menp"></div>
+
+  <div id="localjogo">
+    <div id="quadrado" class="square"></div>
+    <div id="quadradofake" class="square"></div>
+    <div id="quadradogol" class="square"></div>
+    <div id="quadradonight" class="square"></div>
+  </div>
+
+  <button onclick="finalizar()">Finalizar partida</button>
+  <a href="ranking.html" target="_blank"><button>Ver Ranking</button></a>
+
+  <script>
+    let score = 0;
+    const recordeEl = document.getElementById("recorde");
+    const localjogo = document.getElementById("localjogo");
+    const menpd = document.getElementById("menp");
+    const quadrado = document.getElementById("quadrado");
+    const quadradofake = document.getElementById("quadradofake");
+    const quadradogol = document.getElementById("quadradogol");
+    const quadradonight = document.getElementById("quadradonight");
+
+    function moverQuadrados() {
+      const maxX = localjogo.clientWidth - 50;
+      const maxY = localjogo.clientHeight - 50;
+
+      [quadrado, quadradofake].forEach(q => {
+        q.style.left = Math.random() * maxX + "px";
+        q.style.top = Math.random() * maxY + "px";
+      });
+
+      quadradogol.style.display = Math.random() < 0.1 ? "block" : "none";
+      if (quadradogol.style.display === "block") {
+        quadradogol.style.left = Math.random() * maxX + "px";
+        quadradogol.style.top = Math.random() * maxY + "px";
+      }
+
+      quadradonight.style.display = Math.random() < 0.01 ? "block" : "none";
+      if (quadradonight.style.display === "block") {
+        quadradonight.style.left = Math.random() * maxX + "px";
+        quadradonight.style.top = Math.random() * maxY + "px";
+      }
+    }
+
+    function scorenews(texto, cor = "white") {
+      const newsc = document.createElement("div");
+      newsc.textContent = texto;
+      newsc.style.color = cor;
+      newsc.classList.add("mensagemclass");
+      menpd.appendChild(newsc);
+
+      setTimeout(() => {
+        newsc.classList.add("cafe");
+        setTimeout(() => newsc.remove(), 1000);
+      }, 2000);
+    }
+
+    quadrado.onclick = () => {
+      score++;
+      recordeEl.textContent = score;
+      scorenews("+1 ponto!", "lightcoral");
+      moverQuadrados();
+    };
+
+    quadradofake.onclick = () => {
+      score--;
+      recordeEl.textContent = score;
+      scorenews("-1 ponto!", "red");
+      moverQuadrados();
+    };
+
+    quadradogol.onclick = () => {
+      score += 5;
+      quadradogol.style.display = "none";
+      recordeEl.textContent = score;
+      scorenews("+5 pontos (dourado)!", "gold");
+      moverQuadrados();
+    };
+
+    quadradonight.onclick = () => {
+      score += 10;
+      quadradonight.style.display = "none";
+      recordeEl.textContent = score;
+      scorenews("+10 pontos (azul)!", "cyan");
+      moverQuadrados();
+    };
+
+    function finalizar() {
+      const nome = prompt("Qual seu nome?");
+      if (!nome) return;
+      const data = new Date().toLocaleString();
+      db.ref("ranking").push({ nome, pontos: score, data });
+      score = 0;
+      recordeEl.textContent = "0";
+      scorenews("Pontuação enviada!", "lightgreen");
+    }
+
+    moverQuadrados();
+  </script>
+</body>
+</html>
