@@ -8,6 +8,7 @@
     <p>Clique no quadrado para obter pontos!</p>
     </div>
     <p class="rec">Recorde: <span id="recorde">0</span></p>
+    <p class="rec">Rank: <span id="rank">Bronze</span></p>
     <div id="menp"></div>
     <div id="localjogo">
         <div id="quadrado"></div>
@@ -153,10 +154,15 @@
         .cafe {
             animation: cafe 1s forwards;
         }
+        #rank {
+        color: gold;
+        font-weight: bold;
+        }
 </style>
 <script>
         let score = 0;
         const pontuacaom = document.getElementById("recorde");
+        const rankDisplay = document.getElementById("rank");
         const localdjogo = document.getElementById("localjogo");
         const quadrador = document.getElementById("quadrado");
         const falsequadrador = document.getElementById("quadradofake");
@@ -188,20 +194,32 @@
         quadradonightmare.style.display = "none";
     }
         }
+
+       function atualizarRank() {
+        let rank = "Bronze";
+        if (score >= 20 && score < 50) rank = "Prata";
+        else if (score >= 50 && score < 100) rank = "Ouro";
+        else if (score >= 100 && score < 200) rank = "Diamante";
+        else if (score >= 200) rank = "Mestre";
+        rankDisplay.textContent = rank;
+    }
         quadrador.addEventListener("click", () => {
         score += 1;
         pontuacaom.textContent = score;
+        atualizarRank();
         scorenews("+1 ponto!", "lightcoral");
         movimentoquadrados();
     });
         falsequadrador.addEventListener('click', () => {
         score -= 1;
         pontuacaom.textContent = score;
+        atualizarRank();
         scorenews("-1 ponto!", "red");
         movimentoquadrados();
     });
         quadradoSpecial.addEventListener("click", () => {
         score += 5;
+        atualizarRank();
         pontuacaom.textContent = score;
         quadradoSpecial.style.display = "none";
         scorenews("+5 pontos, Quadrado dourado!", "gold");
@@ -209,6 +227,7 @@
     });
         quadradonightmare.addEventListener("click", () => {
         score += 10;
+        atualizarRank();
         pontuacaom.textContent = score;
         quadradonightmare.style.display = "none";
         scorenews("+10 pontos, Quadrado nightmare.", "darkcyan");
@@ -242,3 +261,4 @@ function scorenews(texto, cor = "white") {
     }, 2000); 
 }
 </script>
+
