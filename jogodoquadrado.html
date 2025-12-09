@@ -1,11 +1,13 @@
 <!DOCTYPE html>
+
 <head>
     <title>Jogo do quadrado</title>
 </head>
+
 <body>
     <div class="texto">
-    <h1>Jogo do quadrado</h1>
-    <p>Clique no quadrado para obter pontos!</p>
+        <h1>Jogo do quadrado</h1>
+        <p>Clique no quadrado para obter pontos!</p>
     </div>
     <p class="rec">Recorde: <span id="recorde">0</span></p>
     <p class="rec">Rank: <span id="rank">Bronze</span></p>
@@ -15,6 +17,7 @@
         <div id="quadradofake"></div>
         <div id="quadradogol"></div>
         <div id="quadradonight"></div>
+        <div id="quadradoura"></div>
     </div>
     <div id="regras">Regras</div>
     <div class="abarules">
@@ -26,150 +29,193 @@
     </div>
 </body>
 <style>
-        body {
-            text-align: center;
-            font-family: sans-serif;
-            background-color: rgb(26, 26, 26);
-        }
-        .real{
-            width:20px;
-            height:20px;
-            background-color: rgb(239, 0, 0);
-        }
-        .fake{
-            width:20px;
-            height:20px;
-            background-color: rgb(203, 0, 0);
-        }
-        .oro{
-            width:20px;
-            height:20px;
-            background-color: rgb(241, 251, 62);
-        }
-        .real, .fake, .oro {
-            display: inline-block;
-            margin-left: 10px;
-            margin-right: 10px;
-            vertical-align: middle;
-        }
-        .rec{
-            font-size: 25px;
-            color: rgb(255, 255, 255);
-        }
-        #localjogo {
-            width: 400px;
-            height: 400px;
-            border: 2px solid rgb(251, 251, 251);
-            position: relative;
-            margin: auto;
-            background-color: rgb(61, 61, 61);
-        }
-        #quadrado {
-            width: 50px;
-            height: 50px;
-            background-color: rgb(239, 0, 0);
-            position: absolute;
-            cursor: pointer;
-        }
-        #quadradofake {
-            width: 50px;
-            height: 50px;
-            background-color: rgb(203, 0, 0);
-            position: absolute;
-            cursor: pointer;
-        }
-        #quadradogol {
-            width: 50px;
-            height: 50px;
-            background-color: rgb(241, 251, 62);
-            position: absolute;
-            cursor: pointer;
-            display: none;
-        }
-        #quadradonight{
-            width: 50px;
-            height: 50px;
-            background-color: rgb(2, 26, 141);
-            position: absolute;
-            cursor: pointer;
-            display: none;
-        }
-        #recorde {
-            color: rgb(64, 128, 255);
-        }
-        .texto {
-            color: rgb(255, 255, 255);
-        }
-        .informacoes {
-            color: rgb(253, 253, 224);
-        }
-        #regras {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: absolute;
-            left: 75%;
-            top: 80%;
-            width: 100px;
-            height: 50px;
-            background-color: rgb(55, 55, 55);
-            color: rgb(255, 255, 255);
-            border: solid rgb(255, 255, 255) 3px;
-            cursor: pointer;
-        }
-        .abarules {
-            display: none;
-            position: absolute;
-            top: 18%;
-            left: 67%;
-            width: 400px;
-            height: 400px;
-            background-color: rgb(46, 40, 40);
-            border: 3px solid rgb(221, 188, 0);
-            color:rgb(233, 233, 233);
-        }
-        #menp {
-            position: absolute;
-            top: 55%;
-            left: 5%;
-            width: 200px;
-            height: 140px;
-            border: 2px solid rgb(251, 251, 251);
-            background-color: rgb(61, 61, 61);
-        }
-        .mensagemclass {
-            font-size: 18px;
-            margin: 5px;
-            font-weight: bold;
-            animation: bule 0.5s;
-        }
-        @keyframes bule {
-            from { opacity: 0;}
-            to { opacity: 1;}
-        }
-        @keyframes cafe {
-            from { opacity: 1;}
-            to { opacity: 0;}
-        }
-        .cafe {
-            animation: cafe 1s forwards;
-        }
-        #rank {
-        color: gold;
+    body {
+        text-align: center;
+        font-family: sans-serif;
+        background-color: rgb(26, 26, 26);
+    }
+
+    .real {
+        width: 20px;
+        height: 20px;
+        background-color: rgb(239, 0, 0);
+    }
+
+    .fake {
+        width: 20px;
+        height: 20px;
+        background-color: rgb(203, 0, 0);
+    }
+
+    .oro {
+        width: 20px;
+        height: 20px;
+        background-color: rgb(241, 251, 62);
+    }
+
+    .real,
+    .fake,
+    .oro {
+        display: inline-block;
+        margin-left: 10px;
+        margin-right: 10px;
+        vertical-align: middle;
+    }
+
+    .rec {
+        font-size: 25px;
+        color: rgb(255, 255, 255);
+    }
+
+    #localjogo {
+        width: 400px;
+        height: 400px;
+        border: 2px solid rgb(251, 251, 251);
+        position: relative;
+        margin: auto;
+        background-color: rgb(61, 61, 61);
+    }
+
+    #quadrado {
+        width: 50px;
+        height: 50px;
+        background-color: rgb(239, 0, 0);
+        position: absolute;
+        cursor: pointer;
+    }
+
+    #quadradofake {
+        width: 50px;
+        height: 50px;
+        background-color: rgb(203, 0, 0);
+        position: absolute;
+        cursor: pointer;
+    }
+
+    #quadradogol {
+        width: 50px;
+        height: 50px;
+        background-color: rgb(241, 251, 62);
+        position: absolute;
+        cursor: pointer;
+        display: none;
+    }
+
+    #quadradonight {
+        width: 50px;
+        height: 50px;
+        background-color: rgb(2, 26, 141);
+        position: absolute;
+        cursor: pointer;
+        display: none;
+    }
+
+    #quadradoura {
+        width: 50px;
+        height: 50px;
+        background-color: rgb(28, 189, 68);
+        position: absolute;
+        cursor: pointer;
+        display: none;
+    }
+
+    #recorde {
+        color: rgb(64, 128, 255);
+    }
+
+    .texto {
+        color: rgb(255, 255, 255);
+    }
+
+    .informacoes {
+        color: rgb(253, 253, 224);
+    }
+
+    #regras {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        left: 75%;
+        top: 80%;
+        width: 100px;
+        height: 50px;
+        background-color: rgb(55, 55, 55);
+        color: rgb(255, 255, 255);
+        border: solid rgb(255, 255, 255) 3px;
+        cursor: pointer;
+    }
+
+    .abarules {
+        display: none;
+        position: absolute;
+        top: 18%;
+        left: 67%;
+        width: 400px;
+        height: 400px;
+        background-color: rgb(46, 40, 40);
+        border: 3px solid rgb(221, 188, 0);
+        color: rgb(233, 233, 233);
+    }
+
+    #menp {
+        position: absolute;
+        top: 55%;
+        left: 5%;
+        width: 200px;
+        height: 140px;
+        border: 2px solid rgb(251, 251, 251);
+        background-color: rgb(61, 61, 61);
+    }
+
+    .mensagemclass {
+        font-size: 18px;
+        margin: 5px;
         font-weight: bold;
+        animation: bule 0.5s;
+    }
+
+    @keyframes bule {
+        from {
+            opacity: 0;
         }
+
+        to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes cafe {
+        from {
+            opacity: 1;
+        }
+
+        to {
+            opacity: 0;
+        }
+    }
+
+    .cafe {
+        animation: cafe 1s forwards;
+    }
+
+    #rank {
+        font-weight: bold;
+        transition: color 0.5s ease;
+    }
 </style>
 <script>
-        let score = 0;
-        const pontuacaom = document.getElementById("recorde");
-        const rankDisplay = document.getElementById("rank");
-        const localdjogo = document.getElementById("localjogo");
-        const quadrador = document.getElementById("quadrado");
-        const falsequadrador = document.getElementById("quadradofake");
-        const quadradoSpecial = document.getElementById("quadradogol");
-        const quadradonightmare = document.getElementById("quadradonight")
+    let score = 0;
+    const pontuacaom = document.getElementById("recorde");
+    const rankDisplay = document.getElementById("rank");
+    const localdjogo = document.getElementById("localjogo");
+    const quadrador = document.getElementById("quadrado");
+    const falsequadrador = document.getElementById("quadradofake");
+    const quadradoSpecial = document.getElementById("quadradogol");
+    const quadradonightmare = document.getElementById("quadradonight")
+    const quadradouranium = document.getElementById("quadradoura")
 
-        function movimentoquadrados() {
+    function movimentoquadrados() {
         const maxX = localdjogo.clientWidth - quadrador.clientWidth;
         const maxY = localdjogo.clientHeight - quadrador.clientHeight;
         quadrador.style.left = Math.floor(Math.random() * maxX) + "px";
@@ -177,47 +223,91 @@
         falsequadrador.style.left = Math.floor(Math.random() * maxX) + "px";
         falsequadrador.style.top = Math.floor(Math.random() * maxY) + "px";
 
-        if (Math.random() < 0.09) { 
-        quadradoSpecial.style.display = "block";
-        quadradoSpecial.style.left = Math.floor(Math.random() * maxX) + "px";
-        quadradoSpecial.style.top = Math.floor(Math.random() * maxY) + "px";
-    } 
+        if (Math.random() < 0.09) {
+            quadradoSpecial.style.display = "block";
+            quadradoSpecial.style.left = Math.floor(Math.random() * maxX) + "px";
+            quadradoSpecial.style.top = Math.floor(Math.random() * maxY) + "px";
+        }
         else {
-        quadradoSpecial.style.display = "none";
-    }
-    if (Math.random() < 0.05 && score >= 50) { 
-        quadradonightmare.style.display = "block";
-        quadradonightmare.style.left = Math.floor(Math.random() * maxX) + "px";
-        quadradonightmare.style.top = Math.floor(Math.random() * maxY) + "px";
-    } 
+            quadradoSpecial.style.display = "none";
+        }
+        if (Math.random() < 0.05 && score >= 50) {
+            quadradonightmare.style.display = "block";
+            quadradonightmare.style.left = Math.floor(Math.random() * maxX) + "px";
+            quadradonightmare.style.top = Math.floor(Math.random() * maxY) + "px";
+        }
         else {
-        quadradonightmare.style.display = "none";
+            quadradonightmare.style.display = "none";
+        }
+        if (Math.random() < 0.03 && score >= 100) {
+            quadradouranium.style.display = "block";
+            quadradouranium.style.left = Math.floor(Math.random() * maxX) + "px";
+            quadradouranium.style.top = Math.floor(Math.random() * maxY) + "px";
+        }
+        else {
+            quadradouranium.style.display = "none";
+        }
     }
+
+    function atualizarRank() {
+        let rank = "";
+        let cor = "white";
+
+        if (score < 20) {
+            rank = "Bronze";
+            cor = "#cd7f32";
+        }
+        else if (score < 50) {
+            rank = "Prata";
+            cor = "#c0c0c0";
+        }
+        else if (score < 100) {
+            rank = "Ouro";
+            cor = "#ffd700";
+        }
+        else if (score < 200) {
+            rank = "Platina";
+            cor = "#00e1ff";
+        }
+        else if (score < 400) {
+            rank = "Diamante";
+            cor = "#7df9ff";
+        }
+        else if (score < 600) {
+            rank = "Esmeralda";
+            cor = "#50C878";
+        }
+        else if (score < 800) {
+            rank = "Titanio";
+            cor = "#BFC7C8";
+        }
+        else if (score < 1400) {
+            rank = "Astatina";
+            cor = "#3F0071";
+        }
+        else {
+            rank = "Mestre das joias";
+            cor = "#ff0000";
         }
 
-       function atualizarRank() {
-        let rank = "Bronze";
-        if (score >= 20 && score < 50) rank = "Prata";
-        else if (score >= 50 && score < 100) rank = "Ouro";
-        else if (score >= 100 && score < 200) rank = "Diamante";
-        else if (score >= 200) rank = "Mestre";
         rankDisplay.textContent = rank;
+        rankDisplay.style.color = cor;
     }
-        quadrador.addEventListener("click", () => {
+    quadrador.addEventListener("click", () => {
         score += 1;
         pontuacaom.textContent = score;
         atualizarRank();
         scorenews("+1 ponto!", "lightcoral");
         movimentoquadrados();
     });
-        falsequadrador.addEventListener('click', () => {
+    falsequadrador.addEventListener('click', () => {
         score -= 1;
         pontuacaom.textContent = score;
         atualizarRank();
         scorenews("-1 ponto!", "red");
         movimentoquadrados();
     });
-        quadradoSpecial.addEventListener("click", () => {
+    quadradoSpecial.addEventListener("click", () => {
         score += 5;
         atualizarRank();
         pontuacaom.textContent = score;
@@ -225,40 +315,47 @@
         scorenews("+5 pontos, Quadrado dourado!", "gold");
         movimentoquadrados();
     });
-        quadradonightmare.addEventListener("click", () => {
+    quadradonightmare.addEventListener("click", () => {
         score += 10;
         atualizarRank();
         pontuacaom.textContent = score;
         quadradonightmare.style.display = "none";
-        scorenews("+10 pontos, Quadrado nightmare.", "darkcyan");
+        scorenews("+10 pontos, Quadrado nightmare!", "darkcyan");
+        movimentoquadrados();
+    });
+    quadradouranium.addEventListener("click", () => {
+        score += 50;
+        atualizarRank();
+        pontuacaom.textContent = score;
+        quadradouranium.style.display = "none";
+        scorenews("+50 pontos, Quadrado Uranium!", "limegreen");
         movimentoquadrados();
     });
 
-     movimentoquadrados();
-    
-    document.getElementById("regras").addEventListener("click", function() {
-    const rulesbox= document.querySelector(".abarules");
-    if (rulesbox.style.display === "block") {
-        rulesbox.style.display = "none";
-    } else {
-        rulesbox.style.display = "block";
-    }
-});
+    movimentoquadrados();
 
-function scorenews(texto, cor = "white") {
-    const menpd = document.getElementById("menp");
-    const newsc = document.createElement("div");
-    newsc.textContent = texto;
-    newsc.style.color = cor;
-    newsc.classList.add("mensagemclass");
-    menpd.appendChild(newsc);
+    document.getElementById("regras").addEventListener("click", function () {
+        const rulesbox = document.querySelector(".abarules");
+        if (rulesbox.style.display === "block") {
+            rulesbox.style.display = "none";
+        } else {
+            rulesbox.style.display = "block";
+        }
+    });
 
-    setTimeout(() => {
-        newsc.classList.add("cafe");
+    function scorenews(texto, cor = "white") {
+        const menpd = document.getElementById("menp");
+        const newsc = document.createElement("div");
+        newsc.textContent = texto;
+        newsc.style.color = cor;
+        newsc.classList.add("mensagemclass");
+        menpd.appendChild(newsc);
+
         setTimeout(() => {
-        newsc.remove();
-       }, 1000);
-    }, 2000); 
-}
+            newsc.classList.add("cafe");
+            setTimeout(() => {
+                newsc.remove();
+            }, 1000);
+        }, 2000);
+    }
 </script>
-
